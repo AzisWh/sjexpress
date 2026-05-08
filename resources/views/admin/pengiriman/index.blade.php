@@ -59,9 +59,14 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h1>Manajemen Pengiriman</h1>
                     <div class="d-flex gap-2">
+                        <button class="btn btn-success" id="btnExportExcel" disabled>
+                            <i class="bi bi-file-earmark-excel"></i> Export Excel
+                        </button>
+
                         <button class="btn btn-success" id="btnGenerateInvoice" disabled>
                             <i class="bi bi-file-earmark-pdf"></i> Generate Invoice PDF
                         </button>
+
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahPengiriman">
                             <i class="bi bi-plus-circle"></i> Tambah Pengiriman
                         </button>

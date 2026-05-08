@@ -3,14 +3,86 @@
     let uploadFotoId = null;
 
     const GENERATE_INVOICE_URL = "{{ route('invoice.generate-pdf') }}";
+    const EXPORT_EXCEL_URL = "{{ route('export.pengiriman-excel') }}";
     const DELETE_FOTO_URL = "{{ route('pengiriman.delete-foto', ['id' => ':id']) }}";
     const GET_FOTOS_URL = "{{ route('pengiriman.fotos', ['id' => ':id']) }}";
 
+    // excel export
+    document.getElementById('btnExportExcel')?.addEventListener('click', function() {
+
+        const checked = document.querySelectorAll('.row-check:checked');
+
+        if (checked.length === 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Pilih minimal 1 pengiriman!'
+            });
+            return;
+        }
+
+        const ids = [];
+
+        checked.forEach(cb => {
+            ids.push(cb.value);
+        });
+
+        Swal.fire({
+            title: 'Export Excel?',
+            text: ids.length + ' data akan diexport',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya Export',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                const form = document.createElement('form');
+
+                form.method = 'POST';
+                form.action = EXPORT_EXCEL_URL;
+
+                const csrf = document.createElement('input');
+                csrf.type = 'hidden';
+                csrf.name = '_token';
+                csrf.value = document.querySelector('meta[name="csrf-token"]').content;
+
+                form.appendChild(csrf);
+
+                ids.forEach(id => {
+
+                    const input = document.createElement('input');
+
+                    input.type = 'hidden';
+                    input.name = 'pengiriman_ids[]';
+                    input.value = id;
+
+                    form.appendChild(input);
+                });
+
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+            }
+        });
+    });
+
     // ==================== CHECKBOX LOGIC ====================
+    // function updateGenerateButton() {
+    //     const checked = document.querySelectorAll('.row-check:checked');
+    //     const btn = document.getElementById('btnGenerateInvoice');
+    //     btn.disabled = checked.length === 0;
+    // }
+
     function updateGenerateButton() {
         const checked = document.querySelectorAll('.row-check:checked');
-        const btn = document.getElementById('btnGenerateInvoice');
-        btn.disabled = checked.length === 0;
+
+        const btnInvoice = document.getElementById('btnGenerateInvoice');
+        const btnExcel = document.getElementById('btnExportExcel');
+
+        btnInvoice.disabled = checked.length === 0;
+        btnExcel.disabled = checked.length === 0;
     }
 
     document.getElementById('selectAll')?.addEventListener('change', function() {
@@ -274,7 +346,6 @@
         });
     });
 
-    // ==================== FOTO MODAL ====================
     function openFotoModal(pengirimanId) {
         document.getElementById('fotoPengirimanId').textContent = pengirimanId;
         document.getElementById('fotoGalleryContainer').innerHTML =

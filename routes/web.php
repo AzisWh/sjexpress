@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ArmadaController;
 use App\Http\Controllers\Admin\DriverController;
+use App\Http\Controllers\Admin\ExportController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\PengirimanController;
 use App\Http\Controllers\Admin\PtController;
@@ -28,6 +29,11 @@ Route::middleware(['admin'])->group(function () {
 
     Route::prefix('admin-invoice')->name('invoice.')->group(function () {
         Route::post('/generate-pdf', [InvoiceController::class, 'generateInvoicePdf'])->name('generate-pdf');
+    });
+
+    Route::prefix('admin-export')->name('export.')->group(function () {
+        Route::post('/pengiriman-excel', [ExportController::class, 'exportPengirimanExcel'])
+            ->name('pengiriman-excel');
     });
 
     Route::prefix('admin-pt')->name('pt.')->group(function () {

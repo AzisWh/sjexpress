@@ -10,11 +10,19 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ArmadaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = ArmadaModel::all();
+        try {
+            $perPage = $request->per_page ?? 10;
 
-        return view('admin.armada.index', compact('data'));
+            $data = ArmadaModel::latest()->paginate($perPage)->withQueryString();
+
+            return view('admin.armada.index', compact('data'));
+        } catch (\Exception $e) {
+            Alert::error('Gagal', 'Terjadi kesalahan saat mengambil data armada: '.$e->getMessage());
+
+            return redirect()->back();
+        }
     }
 
     public function store(Request $request)

@@ -4,15 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DriverModel;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DriverController extends Controller
 {
     public function index()
     {
-        $data = DriverModel::all();
-        return view('admin.driver.index', compact('data'));
+        try {
+            $perPage = $request->per_page ?? 10;
+
+            $data = DriverModel::latest()->paginate($perPage)->withQueryString();
+
+            return view('admin.driver.index', compact('data'));
+        } catch (\Exception $e) {
+            Alert::error('Gagal', 'Terjadi kesalahan saat mengambil data driver: '.$e->getMessage());
+
+            return redirect()->back();
+        }
     }
 
     public function store(Request $request)

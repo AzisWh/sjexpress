@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $this->call(UserSeeds::class);
+        $this->call([
+            PtSeeder::class,
+            ArmadaSeeder::class,
+            DriverSeeder::class,
+        ]);
     }
 }

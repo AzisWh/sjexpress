@@ -11,9 +11,17 @@ class PtController extends Controller
 {
     public function index()
     {
-        $data = PtModel::all();
+        try {
+            $perPage = $request->per_page ?? 10;
 
-        return view('admin.pt.index', compact('data'));
+            $data = PtModel::latest()->paginate($perPage)->withQueryString();
+
+            return view('admin.pt.index', compact('data'));
+        } catch (\Exception $e) {
+            Alert::error('Gagal', 'Terjadi kesalahan saat mengambil data pt: '.$e->getMessage());
+
+            return redirect()->back();
+        }
     }
 
     public function store(Request $request)

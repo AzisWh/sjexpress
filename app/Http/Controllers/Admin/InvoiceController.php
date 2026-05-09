@@ -27,9 +27,10 @@ class InvoiceController extends Controller
                 ->whereIn('id', $pengirimanIds)
                 ->get();
 
-            $tanpaFoto = $pengirimanList->filter(fn($p) => $p->fotos->count() === 0);
+            $tanpaFoto = $pengirimanList->filter(fn ($p) => $p->fotos->count() === 0);
             if ($tanpaFoto->isNotEmpty()) {
                 $listNo = $tanpaFoto->pluck('id')->implode(', ');
+
                 return response()->json([
                     'success' => false,
                     'message' => "Pengiriman ID {$listNo} belum upload surat jalan.",
@@ -100,7 +101,7 @@ class InvoiceController extends Controller
                 }
             }
 
-            $nomorInvoice = 'INV/' . str_pad($urut, 3, '0', STR_PAD_LEFT) . '/' . $bulanRomawi . '/' . $tahun;
+            $nomorInvoice = 'INV/'.str_pad($urut, 3, '0', STR_PAD_LEFT).'/'.$bulanRomawi.'/'.$tahun;
 
             $invoice = InvoiceModel::create([
                 'nomor_invoice' => $nomorInvoice,
@@ -127,14 +128,14 @@ class InvoiceController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Gagal generate invoice: ' . $e->getMessage(),
+                'message' => 'Gagal generate invoice: '.$e->getMessage(),
             ], 500);
         }
     }
 
     private function generatePdf(InvoiceModel $invoice, $pengirimanList)
     {
-        $nominalInvoice = $invoice->nominal_invoice;
+        $nominalInvoice = $pengirimanList->sum('harga_pabrik');
 
         $data = [
             'invoice' => $invoice,
@@ -147,7 +148,7 @@ class InvoiceController extends Controller
         $pdf = Pdf::loadView('admin.invoice.pdf', $data)
             ->setPaper('a4', 'portrait');
 
-        $filename = str_replace('/', '-', $invoice->nomor_invoice) . '.pdf';
+        $filename = str_replace('/', '-', $invoice->nomor_invoice).'.pdf';
 
         return $pdf->stream($filename);
     }

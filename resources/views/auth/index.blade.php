@@ -40,7 +40,7 @@
 <body>
     @include('sweetalert::alert')
     <div id="login">
-        <h3 class="text-center text-white pt-5">JAYA EXPRESS</h3>
+        <h3 class="text-center text-white pt-5">SAMA JAYA EXPRESS</h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
@@ -55,7 +55,12 @@
 
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="password" name="password" id="password" class="form-control" required>
+                                <div class="input-group">
+                                    <input type="password" name="password" id="password" class="form-control" required>
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-info" id="toggle-password">Show</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" name="remember" id="remember">
@@ -71,6 +76,18 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            var password = document.getElementById('password');
+            if (password.type === 'password') {
+                password.type = 'text';
+                this.textContent = 'Hide';
+            } else {
+                password.type = 'password';
+                this.textContent = 'Show';
+            }
+        });
+    </script>
 </body>
 
 </html>

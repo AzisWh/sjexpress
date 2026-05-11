@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ExportController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\PengirimanController;
 use App\Http\Controllers\Admin\PtController;
+use App\Http\Controllers\Admin\SignatureController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,5 +56,14 @@ Route::middleware(['admin'])->group(function () {
         Route::post('/store', [DriverController::class, 'store'])->name('store');
         Route::patch('/update/{id}', [DriverController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [DriverController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('admin-signature')->name('signature.')->group(function () {
+        Route::get('/', [SignatureController::class, 'index'])->name('index');
+        Route::post('/store', [SignatureController::class, 'store'])->name('store');
+        Route::patch('/update/{id}', [SignatureController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [SignatureController::class, 'destroy'])->name('destroy');
+
+        Route::get('/get-all', [SignatureController::class, 'getAll'])->name('get-all');
     });
 });

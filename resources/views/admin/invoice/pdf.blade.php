@@ -261,11 +261,14 @@
         <div class="customer-info">
             <h4>Invoice Kepada</h4>
             <div class="name">{{ $pt->name }}</div>
-            @if($pt->alamat)
+            @if ($pt->alamat)
                 <div class="address">{{ $pt->alamat }}</div>
             @endif
-            @if($pt->pic)
-                <div class="address">PIC: {{ $pt->pic }} @if($pt->no_pic) - {{ $pt->no_pic }} @endif</div>
+            @if ($pt->pic)
+                <div class="address">PIC: {{ $pt->pic }} @if ($pt->no_pic)
+                        - {{ $pt->no_pic }}
+                    @endif
+                </div>
             @endif
         </div>
 
@@ -282,7 +285,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($pengirimanList as $i => $p)
+                @foreach ($pengirimanList as $i => $p)
                     <tr>
                         <td class="text-center">{{ $i + 1 }}</td>
                         <td class="text-center">{{ \Carbon\Carbon::parse($p->tanggal_ambil)->format('d/m/Y') }}</td>
@@ -315,8 +318,25 @@
 
         {{-- SIGNATURE --}}
         <div class="signature-section">
-            <div class="hormat-kami">Hormat Kami,</div>
-            <div class="signature-line">Jaya Express</div>
+
+            <div class="hormat-kami">
+                Hormat Kami,
+            </div>
+
+            @if ($signature)
+                <div style="margin-bottom: 10px;">
+                    <img src="{{ $signature->signature }}" style="height: 80px;">
+                </div>
+
+                <div class="signature-line">
+                    {{ $signature->name }}
+                </div>
+            @else
+                <div class="signature-line">
+                    Jaya Express
+                </div>
+            @endif
+
         </div>
     </div>
 
@@ -324,8 +344,8 @@
     <div class="surat-jalan-section">
         <h3>Lampiran Surat Jalan</h3>
 
-        @foreach($pengirimanList as $i => $pengiriman)
-            @foreach($pengiriman->fotos as $j => $foto)
+        @foreach ($pengirimanList as $i => $pengiriman)
+            @foreach ($pengiriman->fotos as $j => $foto)
                 <div class="surat-jalan-item">
                     <div class="sj-info">
                         <p><strong>Surat Jalan Pengiriman #{{ $i + 1 }}</strong></p>

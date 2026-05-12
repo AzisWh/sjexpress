@@ -54,6 +54,7 @@ class PengirimanController extends Controller
             'rute_to' => 'required',
             'harga_pabrik' => 'required|numeric',
             'harga_armada' => 'required|numeric',
+            'keterangan' => 'nullable|string',
             'foto.*' => 'nullable|image|max:2048',
         ]);
 
@@ -174,7 +175,7 @@ class PengirimanController extends Controller
     {
         try {
             $pengiriman = PengirimanModel::findOrFail($id);
-            $pengiriman->update($request->only('pt_id', 'armada_id', 'driver_id', 'tanggal_ambil', 'rute_from', 'rute_to', 'harga_pabrik', 'harga_armada'));
+            $pengiriman->update($request->only('pt_id', 'armada_id', 'driver_id', 'tanggal_ambil', 'rute_from', 'rute_to', 'harga_pabrik', 'harga_armada', 'keterangan'));
 
             return response()->json([
                 'success' => true,

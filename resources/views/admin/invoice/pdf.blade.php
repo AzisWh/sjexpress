@@ -292,7 +292,7 @@
                         <td class="text-center">{{ $p->armada->plat_nomor ?? '-' }}</td>
                         <td>{{ $p->rute_from }} - {{ $p->rute_to }}</td>
                         <td class="text-right">{{ formatRupiah($p->harga_pabrik) }}</td>
-                        <td></td>
+                        <td>{{ $p->keterangan ?? 'Belum ada keterangan' }}</td>
                     </tr>
                 @endforeach
                 <tr class="total-row">

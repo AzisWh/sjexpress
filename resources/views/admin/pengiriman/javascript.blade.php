@@ -391,6 +391,7 @@
         document.getElementById('edit_rute_to').value = data.rute_to;
         document.getElementById('edit_harga_pabrik').value = data.harga_pabrik;
         document.getElementById('edit_harga_armada').value = data.harga_armada;
+        document.getElementById('edit_keterangan').value = data.keterangan;
 
         const route = "{{ route('pengiriman.update', ['id' => ':id']) }}".replace(':id', data.id);
         document.getElementById('formEditPengiriman').action = route;

@@ -17,6 +17,7 @@ class PengirimanModel extends Model
         'rute_to',
         'harga_pabrik',
         'harga_armada',
+        'keterangan',
     ];
 
     public function pt()

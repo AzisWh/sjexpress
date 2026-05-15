@@ -15,6 +15,9 @@ Route::get('/', [AuthController::class, 'index'])->name('login-view');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/invoice/verify/{token}', [InvoiceController::class, 'verifyInvoice'])->name('invoice.verify');
+Route::get('/invoice/file/{token}', [InvoiceController::class, 'publicPdf'])->name('invoice.download-public');
+
 Route::middleware(['admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin-dashboard');
 

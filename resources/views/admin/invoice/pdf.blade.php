@@ -316,27 +316,52 @@
             <p><strong>Nomor Rekening:</strong> 123-456-7890</p>
         </div>
 
-        {{-- SIGNATURE --}}
+        {{-- QR VERIFICATION --}}
+        @php
+            $verifyUrl = route('invoice.verify', $invoice->verification_token);
+
+            // SVG format — no Imagick required, works on shared hosting
+            $qrSvg = QrCode::format('svg')
+                ->size(180)
+                ->margin(2)
+                ->errorCorrection('H')
+                ->generate($verifyUrl);
+
+            // Embed logo into SVG center (pure string manipulation, no image library)
+            $logoPath = public_path('img/logo.jpeg');
+            if (file_exists($logoPath)) {
+                $logoBase64 = base64_encode(file_get_contents($logoPath));
+
+                preg_match('/viewBox="([\d\s.]+)"/', $qrSvg, $vbMatch);
+                if ($vbMatch) {
+                    $c = explode(' ', trim(preg_replace('/\s+/', ' ', $vbMatch[1])));
+                    $vbW = (float) ($c[2] ?? 180);
+                    $vbH = (float) ($c[3] ?? 180);
+                } else {
+                    $vbW = 180;
+                    $vbH = 180;
+                }
+
+                $logoSize = $vbW * 0.22;
+                $pad = $vbW * 0.012;
+                $x = ($vbW - $logoSize) / 2;
+                $y = ($vbH - $logoSize) / 2;
+
+                $overlay = '<rect x="'.$x.'" y="'.$y.'" width="'.$logoSize.'" height="'.$logoSize.'" fill="#ffffff" rx="'.($vbW * 0.015).'"/>'
+                    .'<image x="'.($x + $pad).'" y="'.($y + $pad).'" width="'.($logoSize - $pad * 2).'" height="'.($logoSize - $pad * 2).'" href="data:image/jpeg;base64,'.$logoBase64.'" preserveAspectRatio="xMidYMid slice"/>';
+
+                $qrSvg = str_replace('</svg>', $overlay."\n</svg>", $qrSvg);
+            }
+
+            $qrDataUri = 'data:image/svg+xml;base64,'.base64_encode($qrSvg);
+        @endphp
         <div class="signature-section">
-
-            <div class="hormat-kami">
-                Hormat Kami,
+            <div style="font-size: 10px; margin-bottom: 5px;">
+                Scan QR Code untuk verifikasi invoice
             </div>
-
-            @if ($signature)
-                <div style="margin-bottom: 10px;">
-                    <img src="{{ $signature->signature }}" style="height: 80px;">
-                </div>
-
-                <div class="signature-line">
-                    {{ $signature->name }}
-                </div>
-            @else
-                <div class="signature-line">
-                    Jaya Express
-                </div>
-            @endif
-
+            <div style="text-align: right;">
+                <img src="{!! $qrDataUri !!}" style="width: 140px; height: 140px;">
+            </div>
         </div>
     </div>
 

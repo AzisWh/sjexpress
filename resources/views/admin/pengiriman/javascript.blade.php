@@ -69,12 +69,6 @@
     });
 
     // ==================== CHECKBOX LOGIC ====================
-    // function updateGenerateButton() {
-    //     const checked = document.querySelectorAll('.row-check:checked');
-    //     const btn = document.getElementById('btnGenerateInvoice');
-    //     btn.disabled = checked.length === 0;
-    // }
-
     function updateGenerateButton() {
         const checked = document.querySelectorAll('.row-check:checked');
 
@@ -145,139 +139,22 @@
             return;
         }
 
-        $.ajax({
-            url: "{{ route('signature.get-all') }}",
-            method: 'GET',
-            success: function(response) {
-
-                let options =
-                    '<option class="form-control" value="">-- Pilih Signature --</option>';
-
-                response.data.forEach(item => {
-                    options += `
-                <option class="form-control" value="${item.id}">
-                    ${item.name}
-                </option>
-            `;
-                });
-
-                Swal.fire({
-                    title: 'Generate Invoice PDF',
-                    html: `
-                <div class="text-start">
-                    <label class="form-label mb-2">
-                        Pilih Signature
-                    </label>
-
-                    <select class="form-control" id="signatureSelect" class="swal2-select">
-                        ${options}
-                    </select>
-                </div>
-            `,
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonText: 'Generate PDF',
-                    cancelButtonText: 'Batal',
-                    confirmButtonColor: '#28a745',
-                    didOpen: () => {
-
-                        const confirmBtn = Swal.getConfirmButton();
-                        confirmBtn.disabled = true;
-
-                        document.getElementById('signatureSelect')
-                            .addEventListener('change', function() {
-
-                                confirmBtn.disabled = !this.value;
-                            });
-                    },
-                    preConfirm: () => {
-
-                        const signatureId = document.getElementById('signatureSelect')
-                            .value;
-
-                        if (!signatureId) {
-                            Swal.showValidationMessage(
-                                'Pilih signature terlebih dahulu');
-                            return false;
-                        }
-
-                        return {
-                            signature_id: signatureId
-                        };
-                    }
-                }).then((result) => {
-
-                    if (result.isConfirmed) {
-
-                        generateInvoicePdf(
-                            ids,
-                            result.value.signature_id
-                        );
-                    }
-                });
-
-            },
-            error: function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Gagal mengambil data signature'
-                });
+        Swal.fire({
+            title: 'Generate Invoice?',
+            text: ids.length + ' pengiriman akan digenerate menjadi invoice.',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Generate',
+            cancelButtonText: 'Batal',
+            confirmButtonColor: '#28a745',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                generateInvoicePdf(ids);
             }
         });
     });
 
-    // function generateInvoicePdf(ids, signatureId) {
-    //     Swal.fire({
-    //         title: 'Memproses Invoice...',
-    //         text: 'Mohon tunggu, PDF sedang digenerate',
-    //         icon: 'info',
-    //         allowOutsideClick: false,
-    //         didOpen: () => Swal.showLoading()
-    //     });
-
-    //     const form = document.createElement('form');
-    //     form.method = 'POST';
-    //     form.action = GENERATE_INVOICE_URL;
-    //     form.target = '_blank';
-
-    //     const csrf = document.createElement('input');
-    //     csrf.type = 'hidden';
-    //     csrf.name = '_token';
-    //     csrf.value = document.querySelector('meta[name="csrf-token"]').content;
-    //     form.appendChild(csrf);
-
-    //     ids.forEach(id => {
-    //         const input = document.createElement('input');
-    //         input.type = 'hidden';
-    //         input.name = 'pengiriman_ids[]';
-    //         input.value = id;
-    //         form.appendChild(input);
-    //     });
-
-    //     const signatureInput = document.createElement('input');
-    //     signatureInput.type = 'hidden';
-    //     signatureInput.name = 'signature_id';
-    //     signatureInput.value = signatureId;
-
-    //     form.appendChild(signatureInput);
-
-    //     document.body.appendChild(form);
-    //     form.submit();
-    //     document.body.removeChild(form);
-
-    //     setTimeout(() => {
-    //         Swal.close();
-    //         Swal.fire({
-    //             icon: 'success',
-    //             title: 'Selesai!',
-    //             text: 'PDF invoice telah digenerate di tab baru.',
-    //             confirmButtonText: 'OK'
-    //         });
-    //     }, 2000);
-    // }
-
-    function generateInvoicePdf(ids, signatureId) {
+    function generateInvoicePdf(ids) {
 
         Swal.fire({
             title: 'Memproses Invoice...',
@@ -298,8 +175,6 @@
             formData.append('pengiriman_ids[]', id);
         });
 
-        formData.append('signature_id', signatureId);
-
         $.ajax({
             url: GENERATE_INVOICE_URL,
             method: 'POST',
@@ -316,12 +191,6 @@
                 Swal.close();
 
                 const contentType = xhr.getResponseHeader('Content-Type');
-
-                /*
-                |--------------------------------------------------------------------------
-                | ERROR JSON
-                |--------------------------------------------------------------------------
-                */
 
                 if (contentType && contentType.includes('application/json')) {
 
@@ -343,12 +212,6 @@
                     return;
                 }
 
-                /*
-                |--------------------------------------------------------------------------
-                | PDF SUCCESS
-                |--------------------------------------------------------------------------
-                */
-
                 const fileURL = window.URL.createObjectURL(blob);
 
                 window.open(fileURL, '_blank');
@@ -357,7 +220,7 @@
                     icon: 'success',
                     title: 'Berhasil!',
                     text: 'Invoice berhasil digenerate'
-                });
+                }).then(() => location.reload());
             },
 
             error: function(xhr) {

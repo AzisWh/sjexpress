@@ -16,7 +16,8 @@ class InvoiceModel extends Model
         'nominal_cair',
         'status',
         'tanggal_cair',
-        'signature_id',
+        'generated_by',
+        'verification_token',
     ];
 
     public function pt()
@@ -29,12 +30,13 @@ class InvoiceModel extends Model
         return $this->hasMany(InvoiceDetailModel::class, 'invoice_id');
     }
 
-    public function signature()
-    {
-        return $this->belongsTo(SignatureModel::class, 'signature_id');
-    }
     public function pengiriman()
     {
         return $this->belongsToMany(PengirimanModel::class, 'invoice_details', 'invoice_id', 'pengiriman_id');
+    }
+
+    public function generator()
+    {
+        return $this->belongsTo(User::class, 'generated_by');
     }
 }

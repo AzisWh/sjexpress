@@ -9,6 +9,7 @@ use App\Models\PengirimanModel;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -104,7 +105,7 @@ class InvoiceController extends Controller
                 }
             }
 
-            $nomorInvoice = 'INV/'.
+            $nomorInvoice = 'SJ/'.
                 str_pad($urut, 3, '0', STR_PAD_LEFT).
                 '/'.
                 $bulanRomawi.
@@ -116,7 +117,7 @@ class InvoiceController extends Controller
                 'tanggal_invoice' => $now->toDateString(),
                 'pt_id' => $ptId,
                 'nominal_invoice' => $nominalInvoice,
-                'generated_by' => auth()->id(),
+                'generated_by' => Auth::id(),
                 'verification_token' => Str::uuid(),
             ]);
 

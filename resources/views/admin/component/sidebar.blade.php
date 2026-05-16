@@ -42,12 +42,12 @@
                         <span class="hide-menu">Master Pengiriman</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('signature.index') }}" aria-expanded="false">
                         <i class="ti ti-atom"></i>
                         <span class="hide-menu">Master Signature</span>
                     </a>
-                </li>
+                </li> --}}
                 <!-- ---------------------------------- -->
                 <!-- Dashboard -->
                 <!-- ---------------------------------- -->

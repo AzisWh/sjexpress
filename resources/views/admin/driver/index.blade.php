@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-white">
                 <h5 class="card-title " style="font-weight: bold">Data Driver</h5>
                 <div class="d-flex flex-row gap-2">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">+ Tambah</button>

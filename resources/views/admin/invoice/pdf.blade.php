@@ -247,7 +247,6 @@
                     Kec. Kaliwungu - Kab. Kendal<br>
                     Jawa Tengah 52372<br>
                     Telp: 085640624003 / 082242022287<br>
-                    // Email: info@sjexpress.co.id
                 </div>
             </div>
             <div class="header-right">

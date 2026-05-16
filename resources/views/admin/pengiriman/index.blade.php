@@ -64,7 +64,7 @@
                             </button>
 
                             <button class="btn btn-success" id="btnGenerateInvoice" disabled>
-                                <i class="bi bi-file-earmark-pdf"></i> Generate Invoice PDF
+                                <i class="bi bi-file-earmark-pdf"></i> Cetak Invoice PDF
                             </button>
 
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahPengiriman">

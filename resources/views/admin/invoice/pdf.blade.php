@@ -263,7 +263,7 @@
                 {{-- LEFT --}}
                 <td style="width:75%; vertical-align:top;">
                     <div style="font-size:18px; font-weight:bold; margin-bottom:8px;">
-                        JAYA EXPRESS
+                        CV. SAMA JAYA EXPRESS
                     </div>
 
                     <div style="font-size:10px; color:#666; line-height:1.6;">

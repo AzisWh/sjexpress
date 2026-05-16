@@ -258,6 +258,7 @@
     {{-- INVOICE PAGE --}}
     <div class="invoice-page">
         {{-- HEADER --}}
+<<<<<<< HEAD
         <table style="width:100%; border-bottom:3px solid #333; padding-bottom:15px; margin-bottom:25px;">
             <tr>
                 {{-- LEFT --}}
@@ -292,6 +293,27 @@
                 </td>
             </tr>
         </table>
+=======
+        <div class="header">
+            <div class="header-left">
+                <div class="company-name">CV. SAMA JAYA EXPRESS</div>
+                <div class="company-info">
+                    Jl. Seroja, B-23, Nolokerto<br>
+                    Kec. Kaliwungu - Kab. Kendal<br>
+                    Jawa Tengah 52372<br>
+                    Telp: 085640624003 / 082242022287<br>
+                    // Email: info@sjexpress.co.id
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="invoice-title">INVOICE</div>
+                <div class="invoice-number">{{ $invoice->nomor_invoice }}</div>
+                <div style="font-size: 11px; color: #666; margin-top: 5px;">
+                    Tanggal: {{ \Carbon\Carbon::parse($invoice->tanggal_invoice)->format('d/m/Y') }}
+                </div>
+            </div>
+        </div>
+>>>>>>> 964f1e305a6a3cdf2222402f63e6f118b616f733
 
         {{-- CUSTOMER INFO --}}
         <div class="customer-info">
@@ -346,10 +368,10 @@
 
         {{-- TRANSFER INFO --}}
         <div class="transfer-info">
-            <h4>Informasi Transfer</h4>
-            <p><strong>Nama Rekening:</strong> Jaya Express</p>
+            <h4>Pembayaran Transfer</h4>
+            <p><strong>Nama Rekening:</strong> a/n Firdaus Toba</p>
             <p><strong>Bank:</strong> BCA</p>
-            <p><strong>Nomor Rekening:</strong> 123-456-7890</p>
+            <p><strong>Nomor Rekening:</strong> 803 708 5850</p>
         </div>
 
         {{-- QR VERIFICATION --}}

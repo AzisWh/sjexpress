@@ -39,7 +39,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('pengiriman.index') }}" aria-expanded="false">
                         <i class="ti ti-atom"></i>
-                        <span class="hide-menu">Master Pengiriman</span>
+                        <span class="hide-menu">Data Pengiriman</span>
                     </a>
                 </li>
                 {{-- <li class="sidebar-item">
@@ -62,7 +62,7 @@
                                         d="M9 19v-2h12v2zm0-6v-2h12v2zm0-6V5h12v2zM5 20q-.825 0-1.412-.587T3 18t.588-1.412T5 16t1.413.588T7 18t-.587 1.413T5 20m0-6q-.825 0-1.412-.587T3 12t.588-1.412T5 10t1.413.588T7 12t-.587 1.413T5 14m0-6q-.825 0-1.412-.587T3 6t.588-1.412T5 4t1.413.588T7 6t-.587 1.413T5 8" />
                                 </svg>
                             </span>
-                            <span class="hide-menu">Admin Menu</span>
+                            <span class="hide-menu">Menu Admin</span>
                         </div>
 
                     </a>
@@ -73,7 +73,7 @@
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
                                     </div>
-                                    <span class="hide-menu">List PT</span>
+                                    <span class="hide-menu">List Perusahaan</span>
                                 </div>
 
                             </a>

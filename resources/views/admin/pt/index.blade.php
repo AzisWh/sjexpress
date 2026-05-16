@@ -4,7 +4,7 @@
     <div class="row">
         <div class="card">
             <div class="card-header bg-white">
-                <h5 class="card-title" style="font-weight: bold">Data Pt</h5>
+                <h5 class="card-title" style="font-weight: bold">Data Perusahaan</h5>
                 <div class="d-flex flex-row gap-2">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">+ Tambah</button>
                 </div>

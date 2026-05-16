@@ -241,11 +241,13 @@
         {{-- HEADER --}}
         <div class="header">
             <div class="header-left">
-                <div class="company-name">JAYA EXPRESS</div>
+                <div class="company-name">CV. SAMA JAYA EXPRESS</div>
                 <div class="company-info">
-                    Jl. Raya Transportasi No. 123<br>
-                    Telp: (021) 123-4567<br>
-                    Email: info@jayaexpress.co.id
+                    Jl. Seroja, B-23, Nolokerto<br>
+                    Kec. Kaliwungu - Kab. Kendal<br>
+                    Jawa Tengah 52372<br>
+                    Telp: 085640624003 / 082242022287<br>
+                    // Email: info@sjexpress.co.id
                 </div>
             </div>
             <div class="header-right">
@@ -310,10 +312,10 @@
 
         {{-- TRANSFER INFO --}}
         <div class="transfer-info">
-            <h4>Informasi Transfer</h4>
-            <p><strong>Nama Rekening:</strong> Jaya Express</p>
+            <h4>Pembayaran Transfer</h4>
+            <p><strong>Nama Rekening:</strong> a/n Firdaus Toba</p>
             <p><strong>Bank:</strong> BCA</p>
-            <p><strong>Nomor Rekening:</strong> 123-456-7890</p>
+            <p><strong>Nomor Rekening:</strong> 803 708 5850</p>
         </div>
 
         {{-- QR VERIFICATION --}}

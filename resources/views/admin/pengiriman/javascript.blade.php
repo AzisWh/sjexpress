@@ -140,11 +140,11 @@
         }
 
         Swal.fire({
-            title: 'Generate Invoice?',
-            text: ids.length + ' pengiriman akan digenerate menjadi invoice.',
+            title: 'Cetak Invoice?',
+            text: ids.length + ' pengiriman akan dicetak menjadi invoice.',
             icon: 'question',
             showCancelButton: true,
-            confirmButtonText: 'Ya, Generate',
+            confirmButtonText: 'Ya, Cetak',
             cancelButtonText: 'Batal',
             confirmButtonColor: '#28a745',
         }).then((result) => {
@@ -158,7 +158,7 @@
 
         Swal.fire({
             title: 'Memproses Invoice...',
-            text: 'Mohon tunggu, PDF sedang digenerate',
+            text: 'Mohon tunggu, PDF sedang dicetak',
             icon: 'info',
             allowOutsideClick: false,
             didOpen: () => Swal.showLoading()
@@ -219,7 +219,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Berhasil!',
-                    text: 'Invoice berhasil digenerate'
+                    text: 'Invoice berhasil dicetak'
                 }).then(() => location.reload());
             },
 

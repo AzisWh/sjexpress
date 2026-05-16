@@ -26,6 +26,25 @@
             padding-bottom: 15px;
         }
 
+        .header-left {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .header-left .logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .header-left .company-info-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
         .header-left .company-name {
             font-size: 18px;
             font-weight: bold;
@@ -239,6 +258,42 @@
     {{-- INVOICE PAGE --}}
     <div class="invoice-page">
         {{-- HEADER --}}
+<<<<<<< HEAD
+        <table style="width:100%; border-bottom:3px solid #333; padding-bottom:15px; margin-bottom:25px;">
+            <tr>
+                {{-- LEFT --}}
+                <td style="width:75%; vertical-align:top;">
+                    <div style="font-size:18px; font-weight:bold; margin-bottom:8px;">
+                        CV. SAMA JAYA EXPRESS
+                    </div>
+
+                    <div style="font-size:10px; color:#666; line-height:1.6;">
+                        Jl. Raya Transportasi No. 123<br>
+                        Telp: (021) 123-4567<br>
+                        Email: info@jayaexpress.co.id
+                    </div>
+                </td>
+
+                {{-- RIGHT --}}
+                <td style="width:25%; text-align:right; vertical-align:top;">
+
+                    <img src="{{ public_path('img/logo.jpeg') }}" style="width:70px; margin-bottom:10px;">
+
+                    <div style="font-size:22px; font-weight:bold;">
+                        INVOICE
+                    </div>
+
+                    <div style="font-size:11px; color:#666; margin-top:5px;">
+                        {{ $invoice->nomor_invoice }}
+                    </div>
+
+                    <div style="font-size:10px; color:#666; margin-top:3px;">
+                        {{ \Carbon\Carbon::parse($invoice->tanggal_invoice)->format('d/m/Y') }}
+                    </div>
+                </td>
+            </tr>
+        </table>
+=======
         <div class="header">
             <div class="header-left">
                 <div class="company-name">CV. SAMA JAYA EXPRESS</div>
@@ -257,6 +312,7 @@
                 </div>
             </div>
         </div>
+>>>>>>> 964f1e305a6a3cdf2222402f63e6f118b616f733
 
         {{-- CUSTOMER INFO --}}
         <div class="customer-info">

@@ -105,8 +105,11 @@ class InvoiceController extends Controller
                 }
             }
 
-            $nomorInvoice = 'SJ/'.
+            // 01/INV/7084/V/2026
+            $nomorInvoice =
                 str_pad($urut, 3, '0', STR_PAD_LEFT).
+                '/INV'.
+                '/7084'.
                 '/'.
                 $bulanRomawi.
                 '/'.

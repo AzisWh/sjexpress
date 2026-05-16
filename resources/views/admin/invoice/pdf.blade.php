@@ -267,9 +267,11 @@
                     </div>
 
                     <div style="font-size:10px; color:#666; line-height:1.6;">
-                        Jl. Raya Transportasi No. 123<br>
-                        Telp: (021) 123-4567<br>
-                        Email: info@jayaexpress.co.id
+                        Jl. Seroja, B-23, Nolokerto<br>
+                        Kec. Kaliwungu - Kab. Kendal<br>
+                        Jawa Tengah 52372<br>
+                        Telp: 085640624003 / 082242022287<br>
+                        Email: info@sjexpress.co.id
                     </div>
                 </td>
 

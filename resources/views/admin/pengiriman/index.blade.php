@@ -10,7 +10,7 @@
             letter-spacing: -0.5px;
         }
 
-        .container-fluid > .row:first-child h1 {
+        .container-fluid>.row:first-child h1 {
             font-size: 2.2rem;
             font-weight: 800;
         }
@@ -260,9 +260,10 @@
         }
 
         @media (max-width: 767.98px) {
-            .body-wrapper > .container-fluid {
+            .body-wrapper>.container-fluid {
                 padding: 80px 20px !important;
             }
+
             h1 {
                 font-size: 1.5rem;
             }
@@ -349,10 +350,12 @@
                                         <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>
                                             Terlama
                                         </option>
-                                        <option value="tanggal-terbaru" {{ request('sort') == 'tanggal-terbaru' ? 'selected' : '' }}>
+                                        <option value="tanggal-terbaru"
+                                            {{ request('sort') == 'tanggal-terbaru' ? 'selected' : '' }}>
                                             Tanggal Ambil Terbaru
                                         </option>
-                                        <option value="tanggal-terlama" {{ request('sort') == 'tanggal-terlama' ? 'selected' : '' }}>
+                                        <option value="tanggal-terlama"
+                                            {{ request('sort') == 'tanggal-terlama' ? 'selected' : '' }}>
                                             Tanggal Ambil Terlama
                                         </option>
                                     </select>
@@ -415,7 +418,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tableBody">
                                         @forelse($data as $key => $item)
                                             @php
                                                 $hasInvoice = $item->invoiceDetails()->exists();
@@ -427,28 +430,15 @@
                                                         value="{{ $item->id }}" data-pt-id="{{ $item->pt_id }}"
                                                         data-has-foto="{{ $item->fotos->count() > 0 ? '1' : '0' }}">
                                                 </td>
-                                                <td>
-                                                    {{ ($data->currentPage() - 1) * $data->perPage() + $loop->iteration }}
+                                                <td>{{ ($data->currentPage() - 1) * $data->perPage() + $loop->iteration }}
                                                 </td>
-                                                <td>
-                                                    <strong>{{ $item->pt->name ?? '-' }}</strong>
-                                                </td>
-                                                <td>
-                                                    {{ $item->rute_from }} - {{ $item->rute_to }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->driver->name ?? '-' }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->armada->nama_armada }} -
-                                                    {{ $item->armada->plat_nomor ?? '-' }}
-                                                </td>
-                                                <td>
-                                                    {{ \Carbon\Carbon::parse($item->tanggal_ambil)->format('d/m/Y') }}
-                                                </td>
-                                                <td>
-                                                    {{ formatRupiah($item->harga_pabrik) }}
-                                                </td>
+                                                <td><strong>{{ $item->pt->name ?? '-' }}</strong></td>
+                                                <td>{{ $item->rute_from }} - {{ $item->rute_to }}</td>
+                                                <td>{{ $item->driver->name ?? '-' }}</td>
+                                                <td>{{ $item->armada->nama_armada ?? '-' }} -
+                                                    {{ $item->armada->plat_nomor ?? '-' }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($item->tanggal_ambil)->format('d/m/Y') }}</td>
+                                                <td>{{ formatRupiah($item->harga_pabrik) }}</td>
                                                 <td>
                                                     @if ($item->fotos->count() > 0)
                                                         <button class="btn btn-sm btn-outline-info" type="button"
@@ -456,23 +446,18 @@
                                                             <i class="bi bi-image"></i> {{ $item->fotos->count() }} Foto
                                                         </button>
                                                     @else
-                                                        <span class="badge bg-danger">
-                                                            <i class="bi bi-exclamation-circle"></i> Belum Ada
-                                                        </span>
+                                                        <span class="badge bg-danger"><i
+                                                                class="bi bi-exclamation-circle"></i> Belum Ada</span>
                                                     @endif
                                                 </td>
-                                                <td>
-                                                    {{ $item->keterangan ?? 'Belum ada keterangan' }}
-                                                </td>
+                                                <td>{{ $item->keterangan ?? 'Belum ada keterangan' }}</td>
                                                 <td>
                                                     @if ($hasInvoice)
-                                                        <span class="badge bg-info">
-                                                            <i class="bi bi-check-circle"></i> Sudah Cetak
-                                                        </span>
+                                                        <span class="badge bg-info"><i class="bi bi-check-circle"></i> Sudah
+                                                            Cetak</span>
                                                     @else
-                                                        <span class="badge bg-warning">
-                                                            <i class="bi bi-clock"></i> Belum Cetak
-                                                        </span>
+                                                        <span class="badge bg-warning"><i class="bi bi-clock"></i> Belum
+                                                            Cetak</span>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -489,7 +474,7 @@
                                                         @if ($item->fotos->count() > 0)
                                                             <button class="btn btn-sm btn-outline-primary" type="button"
                                                                 onclick="openFotoModal({{ $item->id }})">
-                                                                <i class="bi bi-eye"></i> Lihat Foto
+                                                                <i class="bi bi-eye"></i> Lihat
                                                             </button>
                                                         @endif
                                                         <button class="btn btn-sm btn-danger" type="button"
@@ -501,23 +486,30 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="11" class="text-center text-muted">
-                                                    Belum ada data pengiriman
+                                                <td colspan="12" class="text-center text-muted">Belum ada data pengiriman
                                                 </td>
                                             </tr>
                                         @endforelse
-                                    </tbody>
-                                    <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
-                                        <div>
-                                            Showing {{ $data->firstItem() ?? 0 }}
-                                            to {{ $data->lastItem() ?? 0 }}
-                                            of {{ $data->total() }} entries
-                                        </div>
 
-                                        <div>
-                                            {{ $data->links('pagination::bootstrap-4') }}
-                                        </div>
-                                    </div>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="12">
+                                                <div
+                                                    class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
+                                                    <div id="paginationInfo">
+                                                        Showing {{ $data->firstItem() ?? 0 }}
+                                                        to {{ $data->lastItem() ?? 0 }}
+                                                        of {{ $data->total() }} entries
+                                                    </div>
+
+                                                    <div id="paginationWrapper">
+                                                        {{ $data->links('pagination::bootstrap-4') }}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
@@ -777,5 +769,8 @@
             </div>
         </div>
 
-        @include('admin.pengiriman.javascript')
     @endsection
+
+    @push('scripts')
+        @include('admin.pengiriman.javascript')
+    @endpush

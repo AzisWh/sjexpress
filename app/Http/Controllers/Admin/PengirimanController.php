@@ -49,6 +49,14 @@ class PengirimanController extends Controller
             $armada = ArmadaModel::all();
             $driver = DriverModel::all();
 
+            if ($request->ajax()) {
+                return response()->json([
+                    'table' => view('admin.pengiriman.table', compact('data'))->render(),
+                    'pagination' => $data->links('pagination::bootstrap-4')->toHtml(),
+                    'info' => 'Showing '.($data->firstItem() ?? 0).' to '.($data->lastItem() ?? 0).' of '.$data->total().' entries',
+                ]);
+            }
+
             return view('admin.pengiriman.index', compact(
                 'data',
                 'pt',

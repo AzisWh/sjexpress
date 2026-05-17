@@ -80,32 +80,31 @@ class InvoiceController extends Controller
 
             $tahun = $now->year;
 
+            $urut = 1;
+
             $lastInvoice = InvoiceModel::whereYear('created_at', $tahun)
                 ->whereMonth('created_at', $now->month)
                 ->orderBy('id', 'desc')
                 ->first();
 
-            $urut = 1;
-
             if ($lastInvoice) {
-
                 $parts = explode('/', $lastInvoice->nomor_invoice);
-
-                if (isset($parts[1]) && is_numeric($parts[1])) {
-
-                    $urut = (int) $parts[1] + 1;
-
+                if (isset($parts[0]) && is_numeric($parts[0])) {
+                    $urut = (int) $parts[0] + 1;
                 } else {
-
-                    $lastCount = InvoiceModel::whereYear('created_at', $tahun)
+                    $lastMax = InvoiceModel::whereYear('created_at', $tahun)
                         ->whereMonth('created_at', $now->month)
-                        ->count();
+                        ->get()
+                        ->map(function ($inv) {
+                            $p = explode('/', $inv->nomor_invoice);
 
-                    $urut = $lastCount + 1;
+                            return isset($p[0]) && is_numeric($p[0]) ? (int) $p[0] : 0;
+                        })
+                        ->max();
+                    $urut = $lastMax + 1;
                 }
             }
 
-            // 01/INV/7084/V/2026
             $nomorInvoice =
                 str_pad($urut, 3, '0', STR_PAD_LEFT).
                 '/INV'.

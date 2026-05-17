@@ -565,6 +565,7 @@
     function applyFilter() {
         const ptId = document.getElementById('filterPt').value;
         const perPage = document.getElementById('perPage').value;
+        const sortOrder = document.getElementById('sortOrder')?.value;
 
         const params = new URLSearchParams();
 
@@ -576,10 +577,14 @@
             params.append('per_page', perPage);
         }
 
+        if (sortOrder) {
+            params.append('sort', sortOrder);
+        }
+
         window.location.href = `{{ route('pengiriman.index') }}?${params.toString()}`;
     }
 
     document.getElementById('filterPt')?.addEventListener('change', applyFilter);
-
     document.getElementById('perPage')?.addEventListener('change', applyFilter);
+    document.getElementById('sortOrder')?.addEventListener('change', applyFilter);
 </script>

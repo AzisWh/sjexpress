@@ -340,10 +340,29 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-3">
+                                    <label class="form-label">Urutkan</label>
+
+                                    <select id="sortOrder" class="form-select">
+                                        <option value="latest" {{ request('sort') == 'latest' ? 'selected' : '' }}>
+                                            Terbaru
+                                        </option>
+                                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>
+                                            Terlama
+                                        </option>
+                                        <option value="tanggal-terbaru" {{ request('sort') == 'tanggal-terbaru' ? 'selected' : '' }}>
+                                            Tanggal Ambil Terbaru
+                                        </option>
+                                        <option value="tanggal-terlama" {{ request('sort') == 'tanggal-terlama' ? 'selected' : '' }}>
+                                            Tanggal Ambil Terlama
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3">
                                     <label class="form-label">Filter PT</label>
 
                                     <select name="pt_id" id="filterPt" class="form-select">
-                                        <option value="">-- Semua PT --</option>
+                                        <option value="">Semua PT</option>
 
                                         @foreach ($pt as $p)
                                             <option value="{{ $p->id }}"

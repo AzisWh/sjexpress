@@ -17,7 +17,7 @@
         <div class="brand-logo d-flex align-items-center justify-content-between">
             <a href="" class="text-nowrap logo-img">
                 {{-- <img src="{{asset('adminview/assets/images/logos/logo.svg')}}" alt="" /> --}}
-                <h4>Dashboard Admin</h4>
+                <h4 style="font-weight: 700;">Dashboard Admin</h4>
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-6"></i>
@@ -26,19 +26,15 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
             <ul id="sidebarnav">
-                <li class="nav-small-cap">
-                    <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
-                    <span class="hide-menu">Home</span>
-                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin-dashboard') }}" aria-expanded="false">
-                        <i class="ti ti-atom"></i>
+                        <i class="ti ti-home fs-4"></i>
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('pengiriman.index') }}" aria-expanded="false">
-                        <i class="ti ti-atom"></i>
+                        <i class="ti ti-truck fs-4"></i>
                         <span class="hide-menu">Data Pengiriman</span>
                     </a>
                 </li>
@@ -71,9 +67,9 @@
                             <a class="sidebar-link justify-content-between" href="{{ route('pt.index') }}">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
+                                        <i class="ti ti-building fs-5"></i>
                                     </div>
-                                    <span class="hide-menu">List Perusahaan</span>
+                                    <span class="hide-menu">Data Perusahaan</span>
                                 </div>
 
                             </a>
@@ -82,9 +78,9 @@
                             <a class="sidebar-link justify-content-between" href="{{ route('armada.index') }}">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
+                                        <i class="ti ti-car fs-5"></i>
                                     </div>
-                                    <span class="hide-menu">List Armada</span>
+                                    <span class="hide-menu">Data Armada</span>
                                 </div>
 
                             </a>
@@ -93,9 +89,9 @@
                             <a class="sidebar-link justify-content-between" href="{{ route('driver.index') }}">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
+                                        <i class="ti ti-steering-wheel fs-5"></i>
                                     </div>
-                                    <span class="hide-menu">List Driver</span>
+                                    <span class="hide-menu">Data Driver</span>
                                 </div>
 
                             </a>

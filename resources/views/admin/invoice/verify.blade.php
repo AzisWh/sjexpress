@@ -324,8 +324,8 @@
             <div class="verify-header">
                 <img src="{{ asset('img/logo.jpeg') }}" alt="Jaya Express" class="logo">
                 <h1>
-                    DOKUMEN INI DIKELOLA DENGAN<br>
-                    APLIKASI JAYA EXPRESS
+                    DOKUMEN INI DIKELOLA OLEH<br>
+                    SISTEM ARSIP SJ EXPRESS
                 </h1>
             </div>
 
@@ -353,7 +353,7 @@
                     </div>
                     <div class="info-row">
                         <span class="info-label">Perusahaan</span>
-                        <span class="info-value">Jaya Express</span>
+                        <span class="info-value">Sama Jaya Express</span>
                     </div>
                     <div class="info-row">
                         <span class="info-label">Tanggal Generate</span>
@@ -374,7 +374,7 @@
             </div>
 
             <div class="verify-footer">
-                &copy; {{ date('Y') }} Jaya Express &mdash; Sistem Verifikasi Dokumen
+                &copy; {{ date('Y') }} SJ Express &mdash; Sistem Verifikasi Dokumen
             </div>
         </div>
 

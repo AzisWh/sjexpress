@@ -1,57 +1,106 @@
 @extends('admin.layout.main')
 <style>
+    body {
+        background: #f8fafc;
+    }
+
+    .page-header {
+        margin-bottom: 1.8rem;
+    }
+
+    .page-title {
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 0;
+    }
+
+    .page-wrapper .container {
+        padding: 0 0.5rem 2rem;
+    }
+
     .card-stat {
-        border-left: 5px solid;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+        min-height: 180px;
+        border: none;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.05);
+        border-radius: 18px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        background: #ffffff;
     }
 
     .card-stat:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transform: translateY(-6px);
+        box-shadow: 0 28px 60px rgba(15, 23, 42, 0.08);
     }
 
     .card-stat.pt {
-        border-left-color: #4CAF50;
+        border: 1px solid rgba(34, 197, 94, 0.15);
     }
 
     .card-stat.armada {
-        border-left-color: #2196F3;
+        border: 1px solid rgba(37, 99, 235, 0.15);
     }
 
     .card-stat.driver {
-        border-left-color: #FF9800;
+        border: 1px solid rgba(249, 115, 22, 0.15);
     }
 
     .stat-icon {
-        font-size: 2.5rem;
-        opacity: 0.2;
         position: absolute;
-        right: 20px;
-        top: 20px;
+        right: 1.5rem;
+        top: 1.5rem;
+        font-size: 4rem;
+        opacity: 0.08;
+        color: #1f2937;
     }
 
-    .stat-count {
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin-bottom: 10px;
+    .stat-body {
+        position: relative;
+        z-index: 1;
     }
 
     .stat-title {
-        color: #666;
+        color: #6b7280;
         font-size: 0.95rem;
-        margin-bottom: 5px;
+        margin-bottom: 0.75rem;
+        text-transform: none;
+        letter-spacing: 0.08em;
+    }
+
+    .stat-count {
+        font-size: 3.1rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 1rem;
+        line-height: 1;
     }
 
     .stat-link {
-        color: #999;
-        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        color: #2563eb;
+        font-size: 0.95rem;
         text-decoration: none;
-        transition: color 0.2s;
+        font-weight: 600;
+        transition: color 0.2s ease;
     }
 
     .stat-link:hover {
-        color: #333;
+        color: #1d4ed8;
+    }
+
+    .stat-link::after {
+        content: '\2192';
+        font-size: 1.05rem;
+        transition: margin-left 0.2s ease;
+        margin-left: 0.25rem;
+    }
+
+    .stat-link:hover::after {
+        margin-left: 0.45rem;
     }
 </style>
 @section('content')
@@ -77,9 +126,9 @@
                             <div class="stat-icon">
                                 <i class="fas fa-building"></i>
                             </div>
-                            <div class="stat-title">Total PT</div>
+                            <div class="stat-title">TOTAL PERUSAHAAN</div>
                             <div class="stat-count">{{ $ptCount }}</div>
-                            <a href="{{ route('pt.index') }}" class="stat-link">Lihat detail →</a>
+                            <a href="{{ route('pt.index') }}" class="stat-link">Lihat detail</a>
                         </div>
                     </div>
                 </div>
@@ -91,9 +140,9 @@
                             <div class="stat-icon">
                                 <i class="fas fa-truck"></i>
                             </div>
-                            <div class="stat-title">Total Armada</div>
+                            <div class="stat-title">TOTAL ARMADA</div>
                             <div class="stat-count">{{ $armadaCount }}</div>
-                            <a href="{{ route('armada.index') }}" class="stat-link">Lihat detail →</a>
+                            <a href="{{ route('armada.index') }}" class="stat-link">Lihat detail</a>
                         </div>
                     </div>
                 </div>
@@ -104,9 +153,9 @@
                             <div class="stat-icon">
                                 <i class="fas fa-user"></i>
                             </div>
-                            <div class="stat-title">Total Driver</div>
+                            <div class="stat-title">TOTAL DRIVER</div>
                             <div class="stat-count">{{ $driverCount }}</div>
-                            <a href="{{ route('driver.index') }}" class="stat-link">Lihat detail →</a>
+                            <a href="{{ route('driver.index') }}" class="stat-link">Lihat detail</a>
                         </div>
                     </div>
                 </div>

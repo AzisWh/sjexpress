@@ -186,42 +186,80 @@
                 responseType: 'blob'
             },
 
-            success: function(blob, status, xhr) {
+            // success: function(blob, status, xhr) {
 
+            //     Swal.close();
+
+            //     const contentType = xhr.getResponseHeader('Content-Type');
+
+            //     if (contentType && contentType.includes('application/json')) {
+
+            //         const reader = new FileReader();
+
+            //         reader.onload = function() {
+
+            //             const response = JSON.parse(reader.result);
+
+            //             Swal.fire({
+            //                 icon: 'error',
+            //                 title: 'Gagal!',
+            //                 text: response.message || 'Terjadi kesalahan'
+            //             });
+            //         };
+
+            //         reader.readAsText(blob);
+
+            //         return;
+            //     }
+
+            //     const fileURL = window.URL.createObjectURL(blob);
+
+            //     window.open(fileURL, '_blank');
+
+            //     Swal.fire({
+            //         icon: 'success',
+            //         title: 'Berhasil!',
+            //         text: 'Invoice berhasil dicetak'
+            //     }).then(() => location.reload());
+            // },
+
+            success: function(blob, status, xhr) {
                 Swal.close();
 
                 const contentType = xhr.getResponseHeader('Content-Type');
 
                 if (contentType && contentType.includes('application/json')) {
-
                     const reader = new FileReader();
-
                     reader.onload = function() {
-
                         const response = JSON.parse(reader.result);
-
                         Swal.fire({
                             icon: 'error',
                             title: 'Gagal!',
                             text: response.message || 'Terjadi kesalahan'
                         });
                     };
-
                     reader.readAsText(blob);
-
                     return;
                 }
 
                 const fileURL = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = fileURL;
+                link.download = 'invoice_' + Date.now() + '.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
 
-                window.open(fileURL, '_blank');
+                setTimeout(() => {
+                    window.URL.revokeObjectURL(fileURL);
 
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: 'Invoice berhasil dicetak'
-                }).then(() => location.reload());
-            },
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: 'Invoice berhasil dicetak'
+                    }).then(() => location.reload());
+                }, 500);
+            }
 
             error: function(xhr) {
 

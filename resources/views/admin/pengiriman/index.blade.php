@@ -74,6 +74,14 @@
             color: white;
         }
 
+        #btnGenerateInvoice {
+            color: white !important;
+        }
+
+        #btnGenerateInvoice:hover {
+            color: white !important;
+        }
+
         .btn-primary {
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             border-color: transparent;
@@ -200,11 +208,13 @@
         .action-buttons .btn-warning {
             background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
             color: white;
+            text-color: white;
         }
 
         .action-buttons .btn-warning:hover {
             background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
             color: white;
+            text-color: white;
         }
 
         .action-buttons .btn-info {
@@ -317,17 +327,18 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h1>Manajemen Pengiriman</h1>
                         <div class="d-flex gap-2">
-                            <button class="btn btn-success" id="btnExportExcel" disabled>
-                                <i class="bi bi-file-earmark-excel"></i> Export Excel
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahPengiriman">
+                                <i class="bi bi-plus-circle"></i> Tambah Pengiriman
                             </button>
 
                             <button class="btn btn-warning" id="btnGenerateInvoice" disabled>
                                 <i class="bi bi-file-earmark-pdf"></i> Cetak Invoice PDF
                             </button>
 
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahPengiriman">
-                                <i class="bi bi-plus-circle"></i> Tambah Pengiriman
+                            <button class="btn btn-success" id="btnExportExcel" disabled>
+                                <i class="bi bi-file-earmark-excel"></i> Export Excel
                             </button>
+
                         </div>
                     </div>
                 </div>
@@ -768,7 +779,6 @@
                 </div>
             </div>
         </div>
-
     @endsection
 
     @push('scripts')

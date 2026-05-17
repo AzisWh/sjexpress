@@ -26,7 +26,24 @@ class PengirimanController extends Controller
                 $query->where('pt_id', $request->pt_id);
             }
 
-            $data = $query->latest()->paginate($perPage)->withQueryString();
+            $sort = $request->sort ?? 'latest';
+
+            switch ($sort) {
+                case 'oldest':
+                    $query->oldest('created_at');
+                    break;
+                case 'tanggal-terbaru':
+                    $query->orderBy('tanggal_ambil', 'desc');
+                    break;
+                case 'tanggal-terlama':
+                    $query->orderBy('tanggal_ambil', 'asc');
+                    break;
+                default:
+                    $query->latest('created_at');
+                    break;
+            }
+
+            $data = $query->paginate($perPage)->withQueryString();
 
             $pt = PtModel::all();
             $armada = ArmadaModel::all();

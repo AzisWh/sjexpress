@@ -15,14 +15,22 @@ class AuthMiddleware
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        if (Auth::check()) {
-            return $next($request);
+        if (! Auth::check()) {
+
+            Alert::error('Access Denied', 'Kamu harus login.');
+
+            return redirect()->route('login-view');
         }
 
-        Alert::error('Access Denied', 'Kamu harus login untuk mengakses halaman ini.');
+        if (! empty($roles) && ! in_array(Auth::user()->role, $roles)) {
 
-        return redirect()->route('login-view');
+            Alert::error('Access Denied', 'Kamu tidak punya akses.');
+
+            return redirect()->back();
+        }
+
+        return $next($request);
     }
 }

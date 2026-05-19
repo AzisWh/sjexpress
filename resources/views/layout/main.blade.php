@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard Admin</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('public/adminview/assets/images/logos/favicon.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('adminview/assets/images/logos/favicon.png') }}">
     {{-- <link rel="stylesheet" href="{{ asset('adminview/assets/css/styles.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('public/adminview/assets/css/styles.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- <link rel="stylesheet" href="../../../../public/adminview/assets/css/styles.min.css"> --}}
 </head>
@@ -27,14 +28,14 @@
 
 
         <!--  Sidebar Start -->
-        @include('admin.component.sidebar')
+        @include('layout.component.sidebar')
         <!--  Sidebar End -->
         <!--  Main wrapper -->
         <div class="body-wrapper">
             <!--  Header Start -->
             <header class="app-header">
                 {{-- navbar start --}}
-                @include('admin.component.navbar')
+                @include('layout.component.navbar')
                 {{-- navbar end --}}
             </header>
             <!--  Header End -->

@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\PengirimanController;
 use App\Http\Controllers\Admin\PtController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Super\DashboardSuperController;
+use App\Http\Controllers\Super\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index'])->name('login-view');
@@ -60,4 +62,15 @@ Route::middleware(['admin'])->group(function () {
         Route::delete('/delete/{id}', [DriverController::class, 'destroy'])->name('destroy');
     });
 
+});
+
+Route::middleware(['superadmin'])->group(function () {
+    Route::get('/super/dashboard', [DashboardSuperController::class, 'index'])->name('super-dashboard');
+
+    Route::prefix('super-user')->name('super-user.')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::post('/store', [UserController::class, 'store'])->name('store');
+        Route::patch('/update/{id}', [UserController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
+    });
 });

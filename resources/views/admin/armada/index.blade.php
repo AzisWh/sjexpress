@@ -1,4 +1,4 @@
-@extends('admin.layout.main')
+@extends('layout.main')
 
 <style>
     /* ===== TYPOGRAPHY & SPACING ===== */
@@ -358,7 +358,8 @@
             // Preview existing image
             if (d.foto_armada) {
                 $('#edit_preview').html(
-                    `<img src="{{ asset('storage/FotoArmada') }}/${d.foto_armada}" class="img-preview" alt="Preview">`);
+                    `<img src="{{ asset('public/storage/FotoArmada') }}/${d.foto_armada}" class="img-preview" alt="Preview">`
+                    );
             } else {
                 $('#edit_preview').html(
                     `<img src="{{ asset('images/no-image.png') }}" class="img-preview" alt="No Image">`);

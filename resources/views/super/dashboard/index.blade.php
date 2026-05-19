@@ -109,7 +109,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        Dashboard
+                        Dashboard Super Admin
                     </h2>
                 </div>
             </div>
@@ -119,46 +119,20 @@
     <div class="page-wrapper">
         <div class="container">
             <div class="row row-deck row-cards">
-                <!-- Card PT -->
+
                 <div class="col-sm-6 col-lg-4">
                     <div class="card card-stat pt">
                         <div class="card-body">
                             <div class="stat-icon">
                                 <i class="fas fa-building"></i>
                             </div>
-                            <div class="stat-title">TOTAL PERUSAHAAN</div>
-                            <div class="stat-count">{{ $ptCount }}</div>
-                            <a href="{{ route('pt.index') }}" class="stat-link">Lihat detail</a>
+                            <div class="stat-title">TOTAL ADMIN</div>
+                            <div class="stat-count">{{ $userCount }}</div>
+                            <a href="{{ route('super-user.index') }}" class="stat-link">Lihat detail</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card Armada -->
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card card-stat armada">
-                        <div class="card-body">
-                            <div class="stat-icon">
-                                <i class="fas fa-truck"></i>
-                            </div>
-                            <div class="stat-title">TOTAL ARMADA</div>
-                            <div class="stat-count">{{ $armadaCount }}</div>
-                            <a href="{{ route('armada.index') }}" class="stat-link">Lihat detail</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card card-stat driver">
-                        <div class="card-body">
-                            <div class="stat-icon">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="stat-title">TOTAL DRIVER</div>
-                            <div class="stat-count">{{ $driverCount }}</div>
-                            <a href="{{ route('driver.index') }}" class="stat-link">Lihat detail</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

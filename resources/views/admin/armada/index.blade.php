@@ -2,7 +2,8 @@
 
 <style>
     /* ===== TYPOGRAPHY & SPACING ===== */
-    h1, h5 {
+    h1,
+    h5 {
         font-size: 2rem;
         font-weight: 700;
         color: #1a1a1a;
@@ -98,151 +99,151 @@
         border: none;
         padding: 1rem;
         font-size: 0.95rem;
-            text-transform: none;
-
-    .table tbody tr:nth-child(odd) {
-        background-color: #fafafa;
-    }
-
-    .table tbody tr:nth-child(even) {
-        background-color: #ffffff;
-    }
-
-    .table tbody tr:hover {
-        background-color: #f0f9ff;
-        box-shadow: inset 0 0 8px rgba(59, 130, 246, 0.1);
-    }
-
-    .table td {
-        padding: 0.95rem 1rem;
-        color: #374151;
-        vertical-align: middle;
-    }
-
-    .table td:first-child {
-        border-radius: 8px 0 0 8px;
-    }
-
-    .table td:last-child {
-        border-radius: 0 8px 8px 0;
-    }
-
-    /* ===== FORM STYLING ===== */
-    .form-label {
-        font-weight: 600;
-        color: #374151;
-        margin-bottom: 0.5rem;
-        font-size: 0.95rem;
-    }
-
-    .form-select,
-    .form-control {
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 0.65rem 0.75rem;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        font-size: 0.95rem;
-    }
-
-    .form-select:focus,
-    .form-control:focus {
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-    }
-
-    /* ===== ACTION BUTTONS ===== */
-    .action-buttons {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-    }
-
-    .action-buttons button,
-    .action-buttons a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.65rem 0.75rem;
-        font-size: 0.85rem;
-        width: 115px;
-        white-space: normal;
-        border-radius: 8px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        border: none;
-        height: 38px;
-        line-height: 1.2;
-    }
-
-    .action-buttons .btn-sm {
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-        padding: 0.65rem 1rem;
-        font-size: 0.85rem;
-    }
-
-    .action-buttons .btn-sm:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-        transform: translateY(-1px);
-    }
-
-    .action-buttons .btn-warning {
-        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-        color: white;
-    }
-
-    .action-buttons .btn-warning:hover {
-        background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-        color: white;
-    }
-
-    .action-buttons .btn-info {
-        background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-        color: white;
-    }
-
-    .action-buttons .btn-info:hover {
-        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
-        color: white;
-    }
-
-    .action-buttons .btn-outline-primary {
-        background: white;
-        color: #3b82f6;
-        border: 2px solid #3b82f6;
-    }
-
-    .action-buttons .btn-outline-primary:hover {
-        background: #3b82f6;
-        color: white;
-    }
-
-    .action-buttons .btn-danger {
-        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-        color: white;
-    }
-
-    .action-buttons .btn-danger:hover {
-        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-        color: white;
-    }
-
-    /* ===== BADGE STYLING ===== */
-    .badge {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-        border-radius: 6px;
         text-transform: none;
-        letter-spacing: 0.3px;
-    }
 
-    /* ===== IMAGE PREVIEW ===== */
-    .img-preview {
-        max-width: 200px;
-        max-height: 200px;
-        margin-top: 10px;
-        border-radius: 5px;
-    }
+        .table tbody tr:nth-child(odd) {
+            background-color: #fafafa;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f0f9ff;
+            box-shadow: inset 0 0 8px rgba(59, 130, 246, 0.1);
+        }
+
+        .table td {
+            padding: 0.95rem 1rem;
+            color: #374151;
+            vertical-align: middle;
+        }
+
+        .table td:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+
+        .table td:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* ===== FORM STYLING ===== */
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-select,
+        .form-control {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 0.65rem 0.75rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .form-select:focus,
+        .form-control:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* ===== ACTION BUTTONS ===== */
+        .action-buttons {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .action-buttons button,
+        .action-buttons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.65rem 0.75rem;
+            font-size: 0.85rem;
+            width: 115px;
+            white-space: normal;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            height: 38px;
+            line-height: 1.2;
+        }
+
+        .action-buttons .btn-sm {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+            padding: 0.65rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .action-buttons .btn-sm:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+            transform: translateY(-1px);
+        }
+
+        .action-buttons .btn-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+
+        .action-buttons .btn-warning:hover {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            color: white;
+        }
+
+        .action-buttons .btn-info {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+        }
+
+        .action-buttons .btn-info:hover {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+        }
+
+        .action-buttons .btn-outline-primary {
+            background: white;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+
+        .action-buttons .btn-outline-primary:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .action-buttons .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        .action-buttons .btn-danger:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+        }
+
+        /* ===== BADGE STYLING ===== */
+        .badge {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 6px;
+            text-transform: none;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== IMAGE PREVIEW ===== */
+        .img-preview {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
 </style>
 
 @section('content')
@@ -284,8 +285,8 @@
                                 <td>{{ $d->plat_nomor }}</td>
                                 <td>
                                     @if ($d->foto_armada)
-                                        <img src="{{ asset('storage/FotoArmada/' . $d->foto_armada) }}" width="80"
-                                            class="rounded" alt="Foto Armada">
+                                        <img src="{{ asset('public/storage/FotoArmada/' . $d->foto_armada) }}"
+                                            width="80" class="rounded" alt="Foto Armada">
                                     @else
                                         <img src="{{ asset('images/no-image.png') }}" width="80" class="rounded"
                                             alt="No Image">

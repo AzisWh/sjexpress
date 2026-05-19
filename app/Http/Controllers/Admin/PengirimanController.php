@@ -182,7 +182,7 @@ class PengirimanController extends Controller
                 return [
                     'id' => $foto->id,
                     'file_path' => $foto->file_path,
-                    'url' => asset('storage/SuratJalan/'.$foto->file_path),
+                    'url' => asset('public/storage/SuratJalan/'.$foto->file_path),
                 ];
             });
 

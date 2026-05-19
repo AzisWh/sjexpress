@@ -5,9 +5,8 @@
     <tr data-id="{{ $item->id }}" data-pt-id="{{ $item->pt_id }}"
         data-has-foto="{{ $item->fotos->count() > 0 ? '1' : '0' }}">
         <td>
-            <input type="checkbox" class="form-check-input row-check"
-                value="{{ $item->id }}" data-pt-id="{{ $item->pt_id }}"
-                data-has-foto="{{ $item->fotos->count() > 0 ? '1' : '0' }}">
+            <input type="checkbox" class="form-check-input row-check" value="{{ $item->id }}"
+                data-pt-id="{{ $item->pt_id }}" data-has-foto="{{ $item->fotos->count() > 0 ? '1' : '0' }}">
         </td>
         <td>{{ ($data->currentPage() - 1) * $data->perPage() + $loop->iteration }}</td>
         <td><strong>{{ $item->pt->name ?? '-' }}</strong></td>
@@ -19,13 +18,11 @@
         <td>{{ formatRupiah($item->harga_pabrik) }}</td>
         <td>
             @if ($item->fotos->count() > 0)
-                <button class="btn btn-sm btn-outline-info" type="button"
-                    onclick="openFotoModal({{ $item->id }})">
+                <button class="btn btn-sm btn-outline-info" type="button" onclick="openFotoModal({{ $item->id }})">
                     <i class="bi bi-image"></i> {{ $item->fotos->count() }} Foto
                 </button>
             @else
-                <span class="badge bg-danger"><i
-                        class="bi bi-exclamation-circle"></i> Belum Ada</span>
+                <span class="badge bg-danger"><i class="bi bi-exclamation-circle"></i> Belum Ada</span>
             @endif
         </td>
         <td>{{ $item->keterangan ?? 'Belum ada keterangan' }}</td>
@@ -40,12 +37,11 @@
         </td>
         <td>
             <div class="action-buttons">
-                <button class="btn btn-sm btn-warning" type="button"
-                    onclick="editData({{ json_encode($item) }})">
+                <button class="btn btn-sm btn-warning" type="button" onclick="editData({{ json_encode($item) }})">
                     <i class="bi bi-pencil"></i> Edit
                 </button>
-                <button class="btn btn-sm btn-info" type="button"
-                    data-bs-toggle="modal" data-bs-target="#modalUploadFoto"
+                <button class="btn btn-sm btn-info" type="button" data-bs-toggle="modal"
+                    data-bs-target="#modalUploadFoto"
                     onclick="setUploadFotoId({{ $item->id }}, {{ $item->fotos->count() }})">
                     <i class="bi bi-cloud-upload"></i> Upload
                 </button>
@@ -55,8 +51,7 @@
                         <i class="bi bi-eye"></i> Lihat
                     </button>
                 @endif
-                <button class="btn btn-sm btn-danger" type="button"
-                    onclick="confirmDelete({{ $item->id }})">
+                <button class="btn btn-sm btn-danger" type="button" onclick="confirmDelete({{ $item->id }})">
                     <i class="bi bi-trash"></i> Hapus
                 </button>
             </div>

@@ -181,21 +181,48 @@
         }
 
         .signature-section {
-            margin-top: 30px;
+            margin-top: 40px;
             text-align: right;
         }
 
-        .signature-section .hormat-kami {
-            margin-bottom: 60px;
-            font-size: 11px;
+        .signature-section .signed-by-label {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 4px;
         }
 
-        .signature-section .signature-line {
-            border-top: 1px solid #333;
-            display: inline-block;
-            width: 200px;
-            padding-top: 5px;
+        .signature-section .company-name-sig {
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .signature-section .qr-code-wrapper {
+            margin: 10px 0;
+        }
+
+        .signature-section .qr-code-wrapper img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .signature-section .director-name {
+            margin-top: 12px;
+            /* padding-top: 4px; */
+            text-decoration: underline;
             font-size: 11px;
+            font-weight: bold;
+        }
+
+        .signature-section .director-underline-note {
+            font-size: 10px;
+            margin-top: 2px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .signature-section .director-title {
+            font-size: 11px;
+            margin-top: 2px;
         }
 
         .surat-jalan-section {
@@ -413,12 +440,15 @@
             $qrDataUri = 'data:image/svg+xml;base64,' . base64_encode($qrSvg);
         @endphp
         <div class="signature-section">
-            <div style="font-size: 10px; margin-bottom: 5px;">
-                Scan QR Code untuk verifikasi invoice
+            <div class="signed-by-label">Signed by</div>
+            <div class="company-name-sig">CV. Sama Jaya Express</div>
+
+            <div class="qr-code-wrapper">
+                <img src="{!! $qrDataUri !!}" alt="QR Code Verifikasi">
             </div>
-            <div style="text-align: right;">
-                <img src="{!! $qrDataUri !!}" style="width: 140px; height: 140px;">
-            </div>
+
+            <div class="director-name">FIRDAUS TOBA, S.Pd</div>
+            <div class="director-title">Direktur</div>
         </div>
     </div>
 

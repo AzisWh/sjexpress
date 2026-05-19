@@ -595,13 +595,13 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Harga Pabrik <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="harga_pabrik" step="0.01"
-                                        required>
+                                    <input type="text" class="form-control harga-input" id="tambah_harga_pabrik"
+                                        name="harga_pabrik" placeholder="0" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Harga Armada <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="harga_armada" step="0.01"
-                                        required>
+                                    <input type="text" class="form-control harga-input" id="tambah_harga_armada"
+                                        name="harga_armada" placeholder="0" required>
                                 </div>
                             </div>
 
@@ -697,21 +697,21 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Harga Pabrik <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="harga_pabrik"
-                                        id="edit_harga_pabrik" step="0.01" required>
+                                    <input type="text" class="form-control harga-input" id="edit_harga_pabrik"
+                                        name="harga_pabrik" placeholder="0" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Harga Armada <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="harga_armada"
-                                        id="edit_harga_armada" step="0.01" required>
+                                    <input type="text" class="form-control harga-input" id="edit_harga_armada"
+                                        name="harga_armada" placeholder="0" required>
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-md-12 mb-3">
-                                        <label class="form-label">Keterangan</label>
-                                        <textarea class="form-control" id="edit_keterangan" name="keterangan" rows="3"
-                                            placeholder="Tambahkan keterangan tambahan jika diperlukan..."></textarea>
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Keterangan</label>
+                                    <textarea class="form-control" id="edit_keterangan" name="keterangan" rows="3"
+                                        placeholder="Tambahkan keterangan tambahan jika diperlukan..."></textarea>
                                 </div>
                             </div>
                         </div>

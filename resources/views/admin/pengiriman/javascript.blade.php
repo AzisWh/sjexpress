@@ -8,6 +8,29 @@
     const GET_FOTOS_URL = "{{ route('pengiriman.fotos', ['id' => ':id']) }}";
     const FILTER_URL = "{{ route('pengiriman.index') }}";
 
+    // ==================== RUPIAH FORMATTER & CLEANER ====================
+    // Format number to Rupiah format with thousands separator (dot)
+    // Example: 1000000 → 1.000.000
+    function formatRupiah(value) {
+        // Remove all non-digit characters
+        const clean = value.toString().replace(/\D/g, '');
+
+        if (clean === '' || clean === '0') return '0';
+
+        // Use Intl.NumberFormat to format with Indonesian locale
+        return new Intl.NumberFormat('id-ID', {
+            style: 'decimal',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        }).format(parseInt(clean));
+    }
+
+    // Clean Rupiah format to pure number
+    // Example: 1.000.000 → 1000000
+    function cleanRupiah(value) {
+        return value.toString().replace(/\D/g, '') || '0';
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         // console.log('DOMContentLoaded fired');
 
@@ -340,6 +363,28 @@
         setupFilePreview('fotoPengiriman', 'filePreview');
         setupFilePreview('tambahFoto', 'tambahFilePreview');
 
+        // ==================== HARGA INPUT FORMATTER ====================
+        // Setup all harga inputs to auto-format as user types
+        document.querySelectorAll('.harga-input').forEach(function(input) {
+            input.addEventListener('input', function(e) {
+                const cursorPos = this.selectionStart; // Save cursor position
+                const oldValue = this.value;
+                const formatted = formatRupiah(this.value);
+                this.value = formatted;
+
+                // Restore cursor position approximately
+                const diff = formatted.length - oldValue.length;
+                this.setSelectionRange(cursorPos + diff, cursorPos + diff);
+            });
+
+            // Format on paste
+            input.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+                this.value = formatRupiah(pastedText);
+            });
+        });
+
         // ==================== UPLOAD FORM SUBMIT ====================
         document.getElementById('formUploadFoto')?.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -387,6 +432,18 @@
         // ==================== EDIT FORM SUBMIT ====================
         document.getElementById('formEditPengiriman')?.addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // Clean harga values before submit
+            const hargaPabrik = document.getElementById('edit_harga_pabrik');
+            const hargaArmada = document.getElementById('edit_harga_armada');
+
+            if (hargaPabrik) hargaPabrik.value = cleanRupiah(hargaPabrik.value);
+            if (hargaArmada) hargaArmada.value = cleanRupiah(hargaArmada.value);
+
+            console.log('Form Edit Submit - Cleaned values:', {
+                harga_pabrik: hargaPabrik?.value,
+                harga_armada: hargaArmada?.value
+            });
 
             const formData = new FormData(this);
             const route = this.action;
@@ -438,6 +495,18 @@
         // ==================== FORM TAMBAH SUBMIT ====================
         document.getElementById('formTambahPengiriman')?.addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // Clean harga values before submit
+            const hargaPabrik = document.getElementById('tambah_harga_pabrik');
+            const hargaArmada = document.getElementById('tambah_harga_armada');
+
+            if (hargaPabrik) hargaPabrik.value = cleanRupiah(hargaPabrik.value);
+            if (hargaArmada) hargaArmada.value = cleanRupiah(hargaArmada.value);
+
+            console.log('Form Tambah Submit - Cleaned values:', {
+                harga_pabrik: hargaPabrik?.value,
+                harga_armada: hargaArmada?.value
+            });
 
             const formData = new FormData(this);
             const route = this.action;
@@ -494,9 +563,16 @@
         document.getElementById('edit_tanggal_ambil').value = data.tanggal_ambil;
         document.getElementById('edit_rute_from').value = data.rute_from;
         document.getElementById('edit_rute_to').value = data.rute_to;
-        document.getElementById('edit_harga_pabrik').value = data.harga_pabrik;
-        document.getElementById('edit_harga_armada').value = data.harga_armada;
+
+        // Format harga values when loading into edit modal
+        document.getElementById('edit_harga_pabrik').value = formatRupiah(data.harga_pabrik);
+        document.getElementById('edit_harga_armada').value = formatRupiah(data.harga_armada);
         document.getElementById('edit_keterangan').value = data.keterangan;
+
+        console.log('Edit Modal Loaded - Formatted values:', {
+            harga_pabrik: formatRupiah(data.harga_pabrik),
+            harga_armada: formatRupiah(data.harga_armada)
+        });
 
         const route = "{{ route('pengiriman.update', ['id' => ':id']) }}".replace(':id', data.id);
         document.getElementById('formEditPengiriman').action = route;

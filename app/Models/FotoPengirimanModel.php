@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class FotoPengirimanModel extends Model
 {
+    use HasFactory;
+
     protected $table = 'foto_pengiriman_table';
 
     protected $fillable = [

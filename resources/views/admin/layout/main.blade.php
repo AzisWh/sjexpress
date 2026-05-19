@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard Admin</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('adminview/assets/images/logos/favicon.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('public/adminview/assets/images/logos/favicon.png') }}">
     {{-- <link rel="stylesheet" href="{{ asset('adminview/assets/css/styles.min.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('adminview/assets/css/styles.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/adminview/assets/css/styles.min.css') }}">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- <link rel="stylesheet" href="../../../../public/adminview/assets/css/styles.min.css"> --}}
 </head>
@@ -52,12 +52,12 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('adminview/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('adminview/assets/js/sidebarmenu.js') }}"></script>
-    <script src="{{ asset('adminview/assets/js/app.min.js') }}"></script>
-    <script src="{{ asset('adminview/assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('adminview/assets/libs/simplebar/dist/simplebar.js') }}"></script>
-    <script src="{{ asset('adminview/assets/js/dashboard.js') }}"></script>
+    <script src="{{ asset('public/adminview/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('public/adminview/assets/js/sidebarmenu.js') }}"></script>
+    <script src="{{ asset('public/adminview/assets/js/app.min.js') }}"></script>
+    <script src="{{ asset('public/adminview/assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('public/adminview/assets/libs/simplebar/dist/simplebar.js') }}"></script>
+    <script src="{{ asset('public/adminview/assets/js/dashboard.js') }}"></script>
     <!-- solar icons -->
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
     @stack('scripts')
